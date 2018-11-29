@@ -1,17 +1,64 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>
-      Contact
-    </ion-title>
+  <ion-navbar color="dark" class="navbar">
+    <ion-title>Stopwatch</ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content>
-  <ion-list>
-    <ion-list-header>Follow us on Twitter</ion-list-header>
-    <ion-item>
-      <ion-icon name="ionic" item-start></ion-icon>
-      @ionicframework
-    </ion-item>
-  </ion-list>
+<ion-content padding>
+  <ion-grid no-padding>
+    <ion-row justify-content-around id="timeDisp">
+      {{ hr }}:{{ min }}:{{ sec }}
+    </ion-row>
+
+    <ion-row justify-content-around>
+      <button
+        ion-button
+        round
+        outline
+        large
+        color="light"
+        id="btn"
+        *ngIf="!isStart && !isPause"
+        (click)="start()"
+      >
+        Start
+      </button>
+      <button
+        ion-button
+        round
+        outline
+        large
+        color="light"
+        id="btn"
+        *ngIf="!isStart && isPause"
+        (click)="start()"
+      >
+        Resume
+      </button>
+      <button
+        ion-button
+        round
+        outline
+        large
+        color="light"
+        id="btn"
+        *ngIf="isStart"
+        (click)="cancel()"
+      >
+        Cancel
+      </button>
+      <button
+        ion-button
+        round
+        outline
+        large
+        color="light"
+        id="btn"
+        *ngIf="isStart"
+        (click)="pause()"
+      >
+        Pause
+      </button>
+    </ion-row>
+  </ion-grid>
 </ion-content>

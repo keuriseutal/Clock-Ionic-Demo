@@ -1,11 +1,66 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>
-      About
-    </ion-title>
+  <ion-navbar color="dark" class="navbar">
+    <ion-title>Timer</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-
+  <ion-grid no-padding>
+    <ion-row justify-content-around id="timeDisp"> {{time.hour}}:{{time.minute}}:{{time.second}} </ion-row>
+    <ion-row justify-content-around>
+      <ion-col col-xs-3 id="timeSelect">
+        <ion-item>
+          <ion-label color="light" stacked>Hours</ion-label>
+          <ion-input
+            type="number"
+            min="0"
+            max="12"
+            id="timeInput"
+            value='0'
+            #hour
+          ></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col col-xs-3 id="timeSelect">
+        <ion-item>
+          <ion-label color="light" stacked>Minutes</ion-label>
+          <ion-input
+            type="number"
+            min="0"
+            max="59"
+            id="timeInput"
+            value='0'
+            #minute
+          ></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col col-xs-3 id="timeSelect">
+        <ion-item>
+          <ion-label color="light" stacked>Seconds</ion-label>
+          <ion-input
+            type="number"
+            min="0"
+            max="59"
+            id="timeInput"
+            value='0'
+            #second
+          ></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row justify-content-around>
+      <button ion-button round outline large color="light" id="btn"*ngIf="!isStart && !isPause" (click)="getInput(hour.value, minute.value, second.value)">
+        Start
+      </button>
+      <button ion-button round outline large color="light" id="btn" *ngIf="isStart" (click)="cancel()">
+        Cancel
+      </button>
+      <button ion-button round outline large color="light" id="btn" *ngIf="isStart" (click)="pause()">
+        Pause
+      </button>
+      <button ion-button round outline large color="light" id="btn" *ngIf="!isStart && isPause" (click)="resume()">
+        Resume
+      </button>
+    </ion-row>
+  </ion-grid>
 </ion-content>
